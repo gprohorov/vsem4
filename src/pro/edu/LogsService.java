@@ -8,6 +8,7 @@ package pro.edu;
 */
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,6 +41,23 @@ public class LogsService {
                  .collect(Collectors.toList());
 
         return list;
+    }
+
+    public static void logsByDateToFile(String file, LocalDate date) throws IOException {
+
+        String dateAsString = date.toString();
+        List<String> list = Files.lines(Paths.get(file))
+                .filter(log -> log.contains(dateAsString))
+                .collect(Collectors.toList());
+
+        String str = "";
+      for(String log: list){
+          str += log + '\n';
+      }
+
+        String fileOutput = "/home/george/Desktop/" +  "ERROR" + dateAsString + ".log";
+        Files.write(Paths.get(fileOutput), str.getBytes(StandardCharsets.UTF_8));
+
     }
 
 

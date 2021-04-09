@@ -3,14 +3,16 @@ package pro.edu;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        LocalDateTime start = LocalDateTime.now();
+    /*    LocalDateTime start = LocalDateTime.now();
         String logs = new String(Files.readAllBytes(Paths.get("/home/george/Desktop/logs.txt")));
         final String[] lines = logs.split("\n");
         System.out.println(lines.length);
@@ -28,11 +30,11 @@ public class Main {
 
         System.out.println("----------------------------------------------");
         start = LocalDateTime.now();
-/*
+
 
         System.out.println(Files.readAllLines(Paths.get("/home/george/Desktop/logs.txt"))
                 .stream().filter(line -> line.contains("ERROR")).count());
-*/
+
         System.out.println(Files.lines(Paths.get("/home/george/Desktop/logs.txt"))
                 .filter(line -> line.contains("ERROR")).count());
         
@@ -40,7 +42,20 @@ public class Main {
         finish = LocalDateTime.now();
 
         System.out.println(ChronoUnit.MILLIS.between( start, finish));
+*/
+        System.out.println(" ---------------------   Threads -----------------");
 
+        System.out.println(LogsService.logsByDate("/home/george/Desktop/logs.txt",
+                LocalDate.of(2020, Month.FEBRUARY, 14)).size());
+
+        LocalDateTime start = LocalDateTime.now();
+        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
+                LocalDate.of(2020, Month.FEBRUARY, 14));
+        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
+                LocalDate.of(2020, Month.FEBRUARY, 15));
+        LocalDateTime finish = LocalDateTime.now();
+
+        System.out.println(ChronoUnit.MILLIS.between(start, finish));
 
     }
 }
