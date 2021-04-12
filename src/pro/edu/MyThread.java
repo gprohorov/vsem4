@@ -9,6 +9,8 @@ package pro.edu;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class MyThread extends Thread{
      private LocalDate date;
@@ -27,13 +29,18 @@ public class MyThread extends Thread{
 
     @Override
     public void run() {
-        System.out.println(this.getName() + " has been started");
+        LocalDateTime start = LocalDateTime.now();
+        System.out.println(this.getName() + " has been started at " + start);
         try {
             LogsService.getLogsCountByDate(this.getDate());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(this.getName() + " has been finished");
+        LocalDateTime finish = LocalDateTime.now();
+        System.out.println(this.getName() + " has been finished at " + finish);
+        System.out.println(this.getName() + " DURATION is  " +
+                ChronoUnit.MILLIS.between(start, finish));
+
     }
 
 }

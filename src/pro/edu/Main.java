@@ -50,18 +50,21 @@ public class Main {
 
 
          LocalDate date = LocalDate.of(2020, Month.FEBRUARY, 10);
-/*
+
+
 
         for (int i = 0; i < 5; i++) {
-            System.out.print(date.plusDays(i) + " - ");
-            System.out.println(LogsService.getLogsCountByDate(date.plusDays(i)));
+           // System.out.print(date.plusDays(i) + " - ");
+            LogsService.getLogsCountByDate(date.plusDays(i));
         }
-*/
+
+
 
         LocalDateTime finish = LocalDateTime.now();
-        start = LocalDateTime.now();
-        System.out.println(ChronoUnit.MILLIS.between(start, finish) + " msec");
 
+        System.out.println(ChronoUnit.MILLIS.between(start, finish) + " msec");
+        System.out.println("------------------   threads ---------------");
+        start = LocalDateTime.now();
         for (int i = 0; i < 5; i++) {
             new MyThread(date.plusDays(i)).start();
         }
