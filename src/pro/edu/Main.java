@@ -49,7 +49,7 @@ public class Main {
         LocalDateTime start = LocalDateTime.now();
 
 
-         LocalDate date = LocalDate.of(2020, Month.FEBRUARY, 14);
+         LocalDate date = LocalDate.of(2020, Month.FEBRUARY, 10);
 /*
 
         for (int i = 0; i < 5; i++) {
