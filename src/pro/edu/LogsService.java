@@ -17,22 +17,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LogsService {
-    private String file;
+    private final static String file = "/home/george/Desktop/logs.txt";
 
     public LogsService() {
     }
 
-    public LogsService(String file) {
-        this.file = file;
-    }
+
 
     public String getFile() {
         return file;
     }
 
-    public void setFile(String file) {
-        this.file = file;
-    }
+
   // 2021-03-11
     public static List<String> logsByDate(String file, LocalDate date) throws IOException {
          String dateAsString = date.toString();
@@ -42,6 +38,15 @@ public class LogsService {
 
         return list;
     }
+
+    public static void getLogsCountByDate(LocalDate date) throws IOException {
+        String dateAsString = date.toString();
+        String file = "/home/george/Desktop/logs.txt";
+        System.out.println( date + " - " + Files.lines(Paths.get(file))
+                .filter(log -> log.contains(dateAsString)).count());
+    }
+
+
 
     public static void logsByDateToFile(String file, LocalDate date) throws IOException {
 

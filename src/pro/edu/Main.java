@@ -45,19 +45,26 @@ public class Main {
 */
         System.out.println(" ---------------------   Threads -----------------");
 
-        System.out.println(LogsService.logsByDate("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 14)).size());
 
         LocalDateTime start = LocalDateTime.now();
-        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 14));
-/*
-        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 15));
-*/
-        LocalDateTime finish = LocalDateTime.now();
 
-        System.out.println(ChronoUnit.MILLIS.between(start, finish));
+
+         LocalDate date = LocalDate.of(2020, Month.FEBRUARY, 14);
+/*
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print(date.plusDays(i) + " - ");
+            System.out.println(LogsService.getLogsCountByDate(date.plusDays(i)));
+        }
+*/
+
+        LocalDateTime finish = LocalDateTime.now();
+        start = LocalDateTime.now();
+        System.out.println(ChronoUnit.MILLIS.between(start, finish) + " msec");
+
+        for (int i = 0; i < 5; i++) {
+            new MyThread(date.plusDays(i)).start();
+        }
 
     }
 }
