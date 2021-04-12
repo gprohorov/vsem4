@@ -50,17 +50,12 @@ public class LogsService {
         StringBuilder sb = new StringBuilder(str);
        Files.lines(Paths.get(file))
                .filter(log -> log.contains(dateAsString))
-          //      .filter(log -> log.contains("2019"))
+               .filter(log -> log.contains("ERROR"))
                 .forEach(log -> sb.append(log + '\n'));
 
 
-
-    /*    for(String log: list){
-          str += log + '\n';
-      }
-*/
-        String fileOutput = "/home/george/Desktop/" +  "ERROR" + dateAsString + ".log";
-        Files.write(Paths.get(fileOutput), sb.toString().getBytes(StandardCharsets.UTF_8));
+   String fileOutput = "/home/george/Desktop/" +  "ERROR" + dateAsString + ".log";
+        Files.write(Paths.get(fileOutput), sb.toString().getBytes());
 
     }
 

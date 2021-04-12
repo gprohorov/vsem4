@@ -45,16 +45,18 @@ public class Main {
 */
         System.out.println(" ---------------------   Threads -----------------");
 
-        System.out.println(LogsService.logsByDate("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 14)).size());
 
         LocalDateTime start = LocalDateTime.now();
-        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 14));
-/*
-        LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
-                LocalDate.of(2020, Month.FEBRUARY, 15));
-*/
+
+
+         LocalDate date = LocalDate.of(2020, Month.FEBRUARY, 14);
+
+        for (int i = 0; i < 5 ; i++) {
+            LogsService.logsByDateToFile("/home/george/Desktop/logs.txt", date.plusDays(i));
+        }
+
+
+
         LocalDateTime finish = LocalDateTime.now();
 
         System.out.println(ChronoUnit.MILLIS.between(start, finish));
