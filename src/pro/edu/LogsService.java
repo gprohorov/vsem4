@@ -46,17 +46,21 @@ public class LogsService {
     public static void logsByDateToFile(String file, LocalDate date) throws IOException {
 
         String dateAsString = date.toString();
-        List<String> list = Files.lines(Paths.get(file))
-                .filter(log -> log.contains(dateAsString))
-                .collect(Collectors.toList());
-
         String str = "";
-      for(String log: list){
+        StringBuilder sb = new StringBuilder(str);
+       Files.lines(Paths.get(file))
+               .filter(log -> log.contains(dateAsString))
+          //      .filter(log -> log.contains("2019"))
+                .forEach(log -> sb.append(log + '\n'));
+
+
+
+    /*    for(String log: list){
           str += log + '\n';
       }
-
+*/
         String fileOutput = "/home/george/Desktop/" +  "ERROR" + dateAsString + ".log";
-        Files.write(Paths.get(fileOutput), str.getBytes(StandardCharsets.UTF_8));
+        Files.write(Paths.get(fileOutput), sb.toString().getBytes(StandardCharsets.UTF_8));
 
     }
 

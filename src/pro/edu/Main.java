@@ -51,8 +51,10 @@ public class Main {
         LocalDateTime start = LocalDateTime.now();
         LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
                 LocalDate.of(2020, Month.FEBRUARY, 14));
+/*
         LogsService.logsByDateToFile("/home/george/Desktop/logs.txt",
                 LocalDate.of(2020, Month.FEBRUARY, 15));
+*/
         LocalDateTime finish = LocalDateTime.now();
 
         System.out.println(ChronoUnit.MILLIS.between(start, finish));
